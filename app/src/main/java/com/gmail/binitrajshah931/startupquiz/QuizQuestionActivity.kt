@@ -42,7 +42,7 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setQuestion() {
-
+        enableOptions()
         val question: Question = mQuestionList!![mCurrentPosition - 1]
         defaultOptionsView()
 
@@ -61,6 +61,13 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvOptionTwo.text = question.optionTwo
         binding.tvOptionThree.text = question.optionThree
         binding.tvOptionFour.text = question.optionFour
+    }
+
+    private fun enableOptions() {
+        binding.tvOptionOne.isClickable = true
+        binding.tvOptionTwo.isClickable = true
+        binding.tvOptionThree.isClickable = true
+        binding.tvOptionFour.isClickable = true
     }
 
     private fun defaultOptionsView() {
@@ -104,6 +111,7 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.btn_submit -> {
+                disableOptions()
                 if (mSelectedOptionPosition == 0) {
                     mCurrentPosition++
                     when {
@@ -136,6 +144,13 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    private fun disableOptions() {
+        binding.tvOptionOne.isClickable = false
+        binding.tvOptionTwo.isClickable = false
+        binding.tvOptionThree.isClickable = false
+        binding.tvOptionFour.isClickable = false
     }
 
     private fun answerView(answer: Int, drawableView: Int) {
