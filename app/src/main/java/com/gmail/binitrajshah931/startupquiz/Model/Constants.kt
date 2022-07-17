@@ -19,19 +19,19 @@ object Constants {
         val que2 = Question(1,
             "Question",
             R.drawable.app_ic,
-            "facebook",
-            "instagram",
-            "snapchat",
-            "linkedin",
+            "a",
+            "b",
+            "d",
+            "e",
             2)
 
         val que3 = Question(1,
             "Question",
             R.drawable.app_ic,
-            "facebook",
-            "instagram",
-            "snapchat",
-            "linkedin",
+            "f",
+            "g",
+            "h",
+            "i",
             2)
 
         val que4 = Question(1,

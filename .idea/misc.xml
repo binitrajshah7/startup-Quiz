@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/StartupQuiz/app/src/main/res/drawable/correct_answer_bg.xml" value="0.1" />
+        <entry key="..\:/StartupQuiz/app/src/main/res/drawable/selected_option_border.xml" value="0.1" />
+        <entry key="..\:/StartupQuiz/app/src/main/res/drawable/wrong_answer_bg.xml" value="0.1" />
         <entry key="..\:/StartupQuiz/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/StartupQuiz/app/src/main/res/layout/activity_quiz_question.xml" value="0.27447916666666666" />
         <entry key="..\:/StartupQuiz2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.163" />
