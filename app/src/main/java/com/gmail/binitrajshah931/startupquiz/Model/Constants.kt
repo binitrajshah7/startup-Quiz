@@ -8,7 +8,7 @@ object Constants {
         val questionList = ArrayList<Question>()
 
         val que1 = Question(1,
-            "Question",
+            "Guess the logo?",
             R.drawable.app_ic,
             "facebook",
             "instagram",
