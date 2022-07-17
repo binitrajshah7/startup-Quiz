@@ -1,5 +1,6 @@
 package com.gmail.binitrajshah931.startupquiz
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
     private var mSelectedOptionPosition: Int = 0
     private var mQuestionList: ArrayList<Question>? = null
     private var mCorrectAnswer: Int = 0
+    private var mUserName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,7 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityQuizQuestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        mUserName = intent.getStringExtra(Constants.USER_NAME)
         mQuestionList = Constants.getQuestions()
 
         setQuestion()
@@ -43,9 +46,9 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
         val question: Question = mQuestionList!![mCurrentPosition - 1]
         defaultOptionsView()
 
-        if(mCurrentPosition == mQuestionList!!.size){
+        if (mCurrentPosition == mQuestionList!!.size) {
             binding.btnSubmit.text = "FINISH"
-        }else{
+        } else {
             binding.btnSubmit.text = "SUBMIT"
         }
 
@@ -101,28 +104,32 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.btn_submit -> {
-                if(mSelectedOptionPosition == 0) {
+                if (mSelectedOptionPosition == 0) {
                     mCurrentPosition++
-                    when{
+                    when {
                         mCurrentPosition <= mQuestionList!!.size -> {
                             setQuestion()
-                        }else -> {
-                            Toast.makeText(this, "Completed the Quiz!", Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {
+                            val intent = Intent(this, ResultActivity::class.java)
+                            intent.putExtra(Constants.USER_NAME, mUserName)
+                            intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswer.toString())
+                            intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionList!!.size.toString())
+                            startActivity(intent)
                         }
                     }
                 } else {
-                    val question = mQuestionList?.get(mCurrentPosition-1)
-                    if(question!!.correctAnswer != mSelectedOptionPosition){
+                    val question = mQuestionList?.get(mCurrentPosition - 1)
+                    if (question!!.correctAnswer != mSelectedOptionPosition) {
                         answerView(mSelectedOptionPosition, R.drawable.wrong_answer_bg)
-                    }
-                    else{
+                    } else {
                         mCorrectAnswer++
                     }
                     answerView(question.correctAnswer, R.drawable.correct_answer_bg)
 
-                    if(mCurrentPosition == mQuestionList!!.size){
+                    if (mCurrentPosition == mQuestionList!!.size) {
                         binding.btnSubmit.text = "FINISH"
-                    }else{
+                    } else {
                         binding.btnSubmit.text = "NEXT"
                     }
                     mSelectedOptionPosition = 0

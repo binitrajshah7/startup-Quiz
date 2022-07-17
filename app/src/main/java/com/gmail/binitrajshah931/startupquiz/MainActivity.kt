@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.gmail.binitrajshah931.startupquiz.Model.Constants
 import com.gmail.binitrajshah931.startupquiz.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
             }
             else {
                 val intent = Intent(this, QuizQuestionActivity::class.java)
+                intent.putExtra(Constants.USER_NAME, binding.etName.text.toString())
                 startActivity(intent)
                 finish()
             }
